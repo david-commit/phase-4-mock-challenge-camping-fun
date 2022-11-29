@@ -7,7 +7,7 @@ class CampersController < ApplicationController
  
  def show
   camp = Camper.find(params[:id])
-  render json: camp, status: :ok
+  render json: camp, status: :ok, include: :activities, serializer: ActSerializer
  rescue ActiveRecord::RecordNotFound => e
   render json: { error: "Camper not found" }, status: :not_found
  end
